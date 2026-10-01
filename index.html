@@ -553,6 +553,7 @@ html,body{margin:0;background:#08090B;scroll-behavior:smooth}
 @media (max-width:900px){.hero-mq .mq-c{height:150px}.hero-mq{margin-top:20px}.hero .hero-duo{margin-top:18px}}
 .mbar .btn{white-space:nowrap}.mbar small{white-space:nowrap}
 .ft-v video{cursor:pointer}
+@media (max-width:900px){.wa{opacity:0;pointer-events:none;transform:scale(.8);transition:opacity .3s,transform .3s,bottom .3s ease}.wa.vis{opacity:1;pointer-events:auto;transform:none}}
 </style>
 </head>
 <body>
@@ -577,6 +578,7 @@ function cur(){var m='Hola, tengo una duda sobre SubliSport';var y=window.innerH
 function upd(){w.href=base+encodeURIComponent(cur());}
 var wt=0;window.addEventListener('scroll',function(){if(wt)return;wt=setTimeout(function(){wt=0;upd();},250);},{passive:true});upd();
 document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href^="https://wa.me/"]');if(a&&window.fbq)fbq('track','Contact');});
+function vis(){w.classList.toggle('vis',window.scrollY>window.innerHeight*0.85);}window.addEventListener('scroll',vis,{passive:true});vis();
 var bar=document.getElementById('mbar');if(bar&&'MutationObserver' in window){new MutationObserver(function(){w.classList.toggle('up',bar.classList.contains('on'));}).observe(bar,{attributes:true,attributeFilter:['class']});}})();</script>
 <script>
 (function(){
