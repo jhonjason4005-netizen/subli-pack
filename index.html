@@ -607,5 +607,16 @@ var bar=document.getElementById('mbar');if(bar&&'MutationObserver' in window){ne
   var dv=document.getElementById('demo');if(dv&&'IntersectionObserver' in window){var vo=new IntersectionObserver(function(es){if(es[0].isIntersecting){if(window.fbq)fbq('track','ViewContent',{content_name:'Demo SubliPack'});vo.disconnect();}},{threshold:.4});vo.observe(dv);}
 })();
 </script>
+<script>(function(){function ev(n){try{if(window.clarity)clarity('event',n);}catch(e){}}
+function tag(k,v){try{if(window.clarity)clarity('set',k,v);}catch(e){}}
+document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a,button');if(!a)return;var h=a.getAttribute('href')||'';
+if(h.indexOf('https://pay.hotmart.com/')===0){var v=a.getAttribute('data-value')||'';var p={'35':'pro','24':'smartsubli','18':'disenos','15':'macro'}[v]||'otro';ev('click_pagar');ev('click_pagar_'+p);tag('intento_compra',p);}
+else if(h.indexOf('https://wa.me/')===0){ev('click_whatsapp');tag('whatsapp','si');}
+else if(a.classList.contains('hw-play')){ev('video_como_funciona');}
+else if(a.classList.contains('ft-tab')){ev('tab_'+a.getAttribute('data-f'));}
+else if(a.classList.contains('vw-tab')){ev('demo_'+a.getAttribute('data-tab'));}
+else if(h==='#oferta'){ev('ir_a_planes');}},true);
+if('IntersectionObserver' in window){var seen={};[['oferta','vio_planes'],['funciones','vio_funciones'],['como-funciona','vio_video'],['demo','vio_demo'],['opiniones','vio_opiniones'],['faq','vio_faq']].forEach(function(x){var el=document.getElementById(x[0]);if(!el)return;new IntersectionObserver(function(es,o){if(es[0].isIntersecting&&!seen[x[1]]){seen[x[1]]=1;ev(x[1]);o.disconnect();}},{threshold:.3}).observe(el);});}
+})();</script>
 </body>
 </html>
