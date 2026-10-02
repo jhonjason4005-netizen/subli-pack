@@ -648,12 +648,12 @@ var bar=document.getElementById('mbar');if(bar&&'MutationObserver' in window){ne
 <script>
 (function(){
   document.documentElement.classList.add('js');
-  var END=new Date('2026-10-02T02:00:00-05:00').getTime();
+  /* Contador diario: llega a 0 a la medianoche de Colombia (UTC-5) y se reinicia solo */
+  var DAY=86400000,OFF=5*3600000;
   function p2(n){return (n<10?'0':'')+n;}
   function set(c,v){document.querySelectorAll('.cd-'+c).forEach(function(e){e.textContent=v;});}
   var iv;
-  function tick(){var ms=END-Date.now();
-    if(ms<=0){document.querySelectorAll('.top,.mini-cd').forEach(function(e){e.style.display='none';});clearInterval(iv);return;}
+  function tick(){var ms=DAY-((Date.now()-OFF)%DAY);
     var t=Math.floor(ms/1000);set('d',p2(Math.floor(t/86400)));set('h',p2(Math.floor(t%86400/3600)));set('m',p2(Math.floor(t%3600/60)));set('s',p2(t%60));}
   iv=setInterval(tick,1000);tick();
   var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
