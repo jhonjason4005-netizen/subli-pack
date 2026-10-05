@@ -799,7 +799,7 @@ var bar=document.getElementById('mbar');if(bar&&'MutationObserver' in window){ne
   /* contador diario desactivado: ahora hay contador con fecha real */
   var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if('IntersectionObserver' in window){
-    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{rootMargin:'0px 0px -8% 0px'});
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{rootMargin:'0px 0px 20% 0px'});
     document.querySelectorAll('.rev').forEach(function(el){io.observe(el);});
     var co=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;co.unobserve(e.target);var el=e.target,to=+el.getAttribute('data-to');if(reduce||to<10)return;var t0=null;function step(ts){if(!t0)t0=ts;var k=Math.min(1,(ts-t0)/1400),v=Math.round(to*(1-Math.pow(1-k,3)));el.textContent=v.toLocaleString('es-CO');if(k<1)requestAnimationFrame(step);}requestAnimationFrame(step);});},{threshold:.6});
     document.querySelectorAll('.num[data-to]').forEach(function(el){co.observe(el);});
@@ -899,5 +899,6 @@ var o='';try{o=sessionStorage.getItem('origen')||'';}catch(e){o=c?('anuncio: '+c
 if(!o)return;
 document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href^="https://wa.me/"]');if(!a)return;
 try{var u=new URL(a.href),t=u.searchParams.get('text')||'Hola';if(t.indexOf('('+o+')')<0){a.href=u.origin+u.pathname+'?text='+encodeURIComponent(t+' ('+o+')');}}catch(err){}},true);})();</script><script>window.addEventListener('load',function(){setTimeout(function(){document.querySelectorAll('video[data-defer]').forEach(function(v){v.preload='auto';v.autoplay=true;var p=v.play();if(p&&p.catch)p.catch(function(){});});},300);});</script>
+<script>window.addEventListener('load',function(){setTimeout(function(){var h=window.innerHeight*1.5;document.querySelectorAll('.rev:not(.in)').forEach(function(el){if(el.getBoundingClientRect().top<h)el.classList.add('in');});},2500);});</script>
 </body>
 </html>
