@@ -30,6 +30,19 @@ fbq('init', '1414749370785023');
 fbq('track', 'PageView');
 </script>
 <!-- End Meta Pixel Code -->
+<!-- TikTok Pixel Code Start -->
+<script>
+!function (w, d, t) {
+  w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(
+var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script")
+;n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
+
+
+  ttq.load('DB1IMMBC77U0BTFTQG50');
+  ttq.page();
+}(window, document, 'ttq');
+</script>
+<!-- TikTok Pixel Code End -->
 <!-- Microsoft Clarity -->
 <script type="text/javascript">
     (function(c,l,a,r,i,t,y){
@@ -783,7 +796,7 @@ var msgs=[['oferta','Hola, tengo una duda sobre los planes de SubliSport'],['ext
 function cur(){var m='Hola, tengo una duda sobre SubliSport';var y=window.innerHeight*0.4;for(var i=0;i<msgs.length;i++){var e=document.getElementById(msgs[i][0]);if(!e)continue;var r=e.getBoundingClientRect();if(r.top<y&&r.bottom>y){m=msgs[i][1];break;}}return m;}
 function upd(){w.href=base+encodeURIComponent(cur());}
 var wt=0;window.addEventListener('scroll',function(){if(wt)return;wt=setTimeout(function(){wt=0;upd();},250);},{passive:true});upd();
-document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href^="https://wa.me/"]');if(a&&window.fbq)fbq('track','Contact');});
+document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href^="https://wa.me/"]');if(a&&window.fbq)fbq('track','Contact');if(a&&window.ttq)ttq.track('Contact');});
 function vis(){w.classList.toggle('vis',window.scrollY>window.innerHeight*0.85);}window.addEventListener('scroll',vis,{passive:true});vis();
 var bar=document.getElementById('mbar');if(bar&&'MutationObserver' in window){new MutationObserver(function(){w.classList.toggle('up',bar.classList.contains('on'));}).observe(bar,{attributes:true,attributeFilter:['class']});}})();</script>
 <script>
@@ -822,8 +835,8 @@ var bar=document.getElementById('mbar');if(bar&&'MutationObserver' in window){ne
   function onS(){if(!bar)return;var y=window.scrollY,hb=hero.offsetTop+hero.offsetHeight,ot=offer.getBoundingClientRect();bar.classList.toggle('on',y>hb&&!(ot.top<window.innerHeight&&ot.bottom>0));}
   var tk=0;window.addEventListener('scroll',function(){if(tk)return;tk=requestAnimationFrame(function(){tk=0;onS();});},{passive:true});onS();
   (function(){var q=window.location.search;if(!q)return;document.querySelectorAll('a[href^="https://pay.hotmart.com/"]').forEach(function(a){a.href=a.href+(a.href.indexOf('?')<0?'?':'&')+q.slice(1);});})();
-  document.querySelectorAll('a[href^="https://pay.hotmart.com/"]').forEach(function(a){a.addEventListener('click',function(){if(window.fbq)fbq('track','InitiateCheckout',{value:+(a.getAttribute('data-value')||35),currency:'USD',content_name:a.textContent.trim()});});});
-  var dv=document.getElementById('demo');if(dv&&'IntersectionObserver' in window){var vo=new IntersectionObserver(function(es){if(es[0].isIntersecting){if(window.fbq)fbq('track','ViewContent',{content_name:'Demo SubliPack'});vo.disconnect();}},{threshold:.4});vo.observe(dv);}
+  document.querySelectorAll('a[href^="https://pay.hotmart.com/"]').forEach(function(a){a.addEventListener('click',function(){if(window.fbq)fbq('track','InitiateCheckout',{value:+(a.getAttribute('data-value')||35),currency:'USD',content_name:a.textContent.trim()});if(window.ttq)ttq.track('InitiateCheckout',{value:+(a.getAttribute('data-value')||35),currency:'USD',contents:[{content_id:a.href.split('/').pop(),content_name:a.textContent.trim()}],content_type:'product'});});});
+  var dv=document.getElementById('demo');if(dv&&'IntersectionObserver' in window){var vo=new IntersectionObserver(function(es){if(es[0].isIntersecting){if(window.fbq)fbq('track','ViewContent',{content_name:'Demo SubliPack'});if(window.ttq)ttq.track('ViewContent',{contents:[{content_id:'demo',content_name:'Demo SubliPack'}],content_type:'product'});vo.disconnect();}},{threshold:.4});vo.observe(dv);}
 })();
 </script>
 <script>(function(){function ev(n){try{if(window.clarity)clarity('event',n);}catch(e){}}
@@ -887,7 +900,7 @@ nm.addEventListener('input',draw);nu.addEventListener('input',function(){var v=n
 [nm,nu].forEach(function(i){i.addEventListener('focus',function(){if(i===nm&&i.value==='TU NOMBRE')i.select();});});
 function chips(id,cb){var w=document.getElementById(id);w.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;[].forEach.call(w.children,function(x){x.classList.toggle('on',x===b);});cb(+b.getAttribute('data-v'));draw();});}
 chips('jz-style',function(v){st=v;});chips('jz-color',function(v){co=v;});draw();})();</script><script>(function(){var w=document.querySelector('.hw-v');if(!w)return;var v=w.querySelector('video'),b=w.querySelector('.hw-play');
-b.addEventListener('click',function(){v.muted=false;v.controls=true;w.classList.add('on');var pr=v.play();if(pr&&pr.catch)pr.catch(function(){});if(window.fbq)fbq('track','ViewContent',{content_name:'Video como funciona'});});
+b.addEventListener('click',function(){v.muted=false;v.controls=true;w.classList.add('on');var pr=v.play();if(pr&&pr.catch)pr.catch(function(){});if(window.fbq)fbq('track','ViewContent',{content_name:'Video como funciona'});if(window.ttq)ttq.track('ViewContent',{contents:[{content_id:'video',content_name:'Video como funciona'}],content_type:'product'});});
 v.addEventListener('ended',function(){w.classList.remove('on');v.controls=false;});})();</script><script>(function(){var END=Date.UTC(2026,9,7,4,59,59);/* martes 6 oct 2026, 11:59:59 p. m. hora Colombia */
 function p2(n){return (n<10?'0':'')+n;}function set(c,v){document.querySelectorAll('.lz-'+c).forEach(function(e){e.textContent=v;});}
 function done(){document.querySelectorAll('.lz-on').forEach(function(e){e.hidden=true;});document.querySelectorAll('.lz-off').forEach(function(e){e.hidden=false;});}
